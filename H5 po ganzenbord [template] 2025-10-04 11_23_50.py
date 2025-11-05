@@ -190,7 +190,8 @@ while not done:
                    update_screen("normaal")
                    continue
                
-# weer
+# weer toevoeging
+              weer = 0
                weer_teller += 1
 
 if weer_teller >= random.randint(2, 4):
@@ -200,27 +201,27 @@ if weer_teller >= random.randint(2, 4):
     huidig_weer = random.choice(["normaal", "zon", "regen", "storm", "mist"])
 
 if huidig_weer == "zon":
-    speciale_tekst = " Zon! Speler " + str(beurt + 1) + " mag 2 extra stappen vooruit."
-    beweeg_pion(beurt, 2)
+    speciale_tekst = " Zon, Speler " + str(beurt + 1) + " mag 2 extra stappen vooruit."
+    beweeg_pion(beurt, 2)  #als het zon is
 elif huidig_weer == "regen":
-    speciale_tekst = " Regen! Speler " + str(beurt + 1) + " glijdt 2 vakjes achteruit."
-    beweeg_pion(beurt, -2)
+    speciale_tekst = " Regen, Speler " + str(beurt + 1) + " glijdt 2 vakjes achteruit."
+    beweeg_pion(beurt, -2)   #als het regen is
 elif huidig_weer == "storm":
-    speciale_tekst = " Storm! Speler " + str(beurt + 1) + "  blijft staan."
-    pion_posities[beurt] -= worp
+    speciale_tekst = " Storm, Speler " + str(beurt + 1) + "  blijft staan."
+    pion_posities[beurt] -= worp          #als het storm is
 elif huidig_weer == "mist"
-    speciale_tekst = " Mist! Speler " + str(beurt + 1) + " kan maar 1 stap vooruit."
-    pion_posities[beurt] -= worp - 1
+    speciale_tekst = " Mist, Speler " + str(beurt + 1) + " kan maar 1 stap vooruit."
+    pion_posities[beurt] -= worp - 1      #als het mist is
 
 # dobbelsteenbonus
-if pion_posities[beurt] == 29:  # voorbeeld vakje
+if pion_posities[beurt] == 29:  # vakje
     extra_worp = random.randint(1,6)
     if extra_worp <= 3:
         pion_posities[beurt] -= 1
         if pion_posities[beurt] < 0:
             pion_posities[beurt] = 0
 
-        speciale_tekst = " Bonusdobbelsteen! Gooi " + str(extra_worp) + "  1 stap achteruit."
+        speciale_tekst = " Bonusdobbelsteen! Gooi " + str(extra_worp) + "  1 stap achteruit." 
     else:
         pion_posities[beurt] += 1
         speciale_tekst = " Bonusdobbelsteen! Gooi " + str(extra_worp) + " 1 stap vooruit."
@@ -252,7 +253,7 @@ if pion_posities[beurt] == 34:  # voorbeeld vakje
                    antwoord = getal1 + getal2
                    vraag = "Wat is" + str(getal1) + "+" + str(getal2) + "?"
                    antwoord_speler = int(input(vraag))
-                   if antwoord == antwoord_speler: #juist? dan mag je blijven staan
+                   if antwoord == antwoord_speler: #als het juist is dan mag je blijven staan
                        speciale_tekst = "Speler " + str(beurt + 1) + "mag blijven staan"
                    else: #onjuist? dan sla je een beurt over
                        beurten_overslaan[beurt] += 1
@@ -297,4 +298,5 @@ if pion_posities[beurt] == 34:  # voorbeeld vakje
            update_screen("normaal") #update screen
 
 # --------------- Afsluiten van Pygame ---------------
+
 pygame.quit() # sluit Pygame en het spel netjes af
